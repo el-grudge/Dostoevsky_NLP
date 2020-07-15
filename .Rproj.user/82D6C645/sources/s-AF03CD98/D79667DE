@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594700375140.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D79667DE",
+    "lastKnownWriteTime" : 1594707982,
+    "last_content_update" : 1594707982540,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/plot_analysis.R",
+    "project_path" : "plot_analysis.R",
+    "properties" : {
+        "cursorPosition" : "41,0",
+        "scrollLine" : "14",
+        "tempName" : "Untitled4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

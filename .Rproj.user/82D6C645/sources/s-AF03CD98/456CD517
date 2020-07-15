@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594692834267.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "516078560",
+    "id" : "456CD517",
+    "lastKnownWriteTime" : 1594782775,
+    "last_content_update" : 1594782775444,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/data_loading.R",
+    "project_path" : "data_loading.R",
+    "properties" : {
+        "cursorPosition" : "50,0",
+        "scrollLine" : "50",
+        "tempName" : "Untitled5"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

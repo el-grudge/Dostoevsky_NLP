@@ -1,0 +1,6 @@
+"0","s_v <- get_sentences(my_example_text)
+"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"

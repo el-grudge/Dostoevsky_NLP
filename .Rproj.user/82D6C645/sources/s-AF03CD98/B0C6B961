@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594782379139.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B0C6B961",
+    "lastKnownWriteTime" : 1594757021,
+    "last_content_update" : 1594782379139,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8C10D754",
+        "caption" : "dostoevsky_Words",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dostoevsky_Words&cache_key=8C10D754",
+        "displayedObservations" : 199725,
+        "environment" : "",
+        "expression" : "dostoevsky_Words",
+        "object" : "dostoevsky_Words",
+        "preview" : 0,
+        "totalObservations" : 199725,
+        "variables" : 7
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

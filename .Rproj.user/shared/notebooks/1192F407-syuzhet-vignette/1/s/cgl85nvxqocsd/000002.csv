@@ -1,0 +1,5 @@
+"0","joyces_portrait <- get_text_as_string(path_to_a_text_file)
+"
+"2","Error in get_text_as_string(path_to_a_text_file) : 
+  could not find function ""get_text_as_string""
+"

@@ -1,0 +1,196 @@
+library(dplyr)
+library(gutenbergr)
+library(syuzhet)
+
+# sentence vectorization
+joyces_portrait <- get_text_as_string(path_to_a_text_file)
+poa_v <- get_sentences(joyces_portrait)
+
+# 
+gutenberg_metadata[gutenberg_metadata$gutenberg_id %in% c(600,2554,2638, 8117,20054),]
+
+# 600, Notes from the Underground
+# 2554, Crime and Punishment
+# 2638, The Idiot
+# 8117, The Possessed
+# 28054, The Brothers Karamzov
+
+gutenberg_download(600)$text %>% head()
+
+gutenberg_download(600)
+
+get_text_as_string(path_to_a_text_file)
+
+joyces_portrait <- get_text_as_string(path_to_a_text_file)
+poa_v <- get_sentences(joyces_portrait)
+
+get_sentences(gutenberg_download(600))
+
+View(toString(gutenberg_download(600)$text))
+
+
+View(get_sentences(toString(gutenberg_download(600)$text)))
+
+
+nou_V <- get_sentences(toString(gutenberg_download(600)$text))
+syuzhet_vector <- get_sentiment(nou_V, method="syuzhet")
+#s_v_sentiment <- get_sentiment(syuzhet_vector)
+plot(
+  syuzhet_vector, 
+  type="l", 
+  main="Example Plot Trajectory", 
+  xlab = "Narrative Time", 
+  ylab= "Emotional Valence"
+)
+plot(
+  syuzhet_vector, 
+  type = "l", 
+  main = "Example Plot Trajectory", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence"
+)
+lines(zoo::rollmean(s_v_sentiment, k=3, fill=NA), col = "red", lwd = 2)
+percent_vals <- get_percentage_values(syuzhet_vector, bins = 10)
+plot(
+  percent_vals, 
+  type="l", 
+  main="Joyce's Portrait Using Percentage-Based Means", 
+  xlab = "Narrative Time", 
+  ylab= "Emotional Valence", 
+  col="red"
+)
+
+
+
+cap_V <- get_sentences(toString(gutenberg_download(2554)$text))
+syuzhet_vector <- get_sentiment(cap_V, method="syuzhet")
+#s_v_sentiment <- get_sentiment(syuzhet_vector)
+plot(
+  syuzhet_vector, 
+  type="l", 
+  main="Example Plot Trajectory", 
+  xlab = "Narrative Time", 
+  ylab= "Emotional Valence"
+)
+plot(
+  syuzhet_vector, 
+  type = "l", 
+  main = "Example Plot Trajectory", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence"
+)
+lines(zoo::rollmean(s_v_sentiment, k=3, fill=NA), col = "red", lwd = 2)
+percent_vals <- get_percentage_values(syuzhet_vector, bins = 10)
+plot(
+  percent_vals, 
+  type="l", 
+  main="Joyce's Portrait Using Percentage-Based Means", 
+  xlab = "Narrative Time", 
+  ylab= "Emotional Valence", 
+  col="red"
+)
+
+library(syuzhet)
+dct_values <- get_dct_transform(
+  syuzhet_vector, 
+  low_pass_size = 8, 
+  x_reverse_len = 100,
+  scale_vals = F,
+  scale_range = T
+)
+plot(
+  dct_values, 
+  type ="l", 
+  main ="Joyce's Portrait using Transformed Values", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence", 
+  col = "red"
+)
+
+path_to_a_text_file <- system.file("extdata", "portrait.txt",package = "syuzhet")
+joyces_portrait <- get_text_as_string(path_to_a_text_file)
+poa_v <- get_sentences(joyces_portrait)
+poa_sentiment <- get_sentiment(poa_v, method='bing')
+simple_plot(poa_sentiment)
+
+simple_plot(syuzhet_vector)
+
+ft_values <- get_transformed_values(
+  syuzhet_vector, 
+  low_pass_size = 3, 
+  x_reverse_len = 100,
+  padding_factor = 2,
+  scale_vals = TRUE,
+  scale_range = FALSE
+)
+plot(
+  ft_values, 
+  type ="l", 
+  main ="Joyce's Portrait using Transformed Values", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence", 
+  col = "red"
+)
+
+dct_values <- get_dct_transform(
+  syuzhet_vector, 
+  low_pass_size = 10, 
+  x_reverse_len = 100,
+  scale_vals = F,
+  scale_range = T
+)
+plot(
+  dct_values, 
+  type ="l", 
+  main ="Joyce's Portrait using Transformed Values", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence", 
+  col = "red"
+)
+
+# the_idiot <- toString(dostoevsky[dostoevsky$title=='the idiot','text'])
+the_idiot <- toString(paste(dostoevsky[dostoevsky$title=='the idiot','text'], collapse = " "))
+idiot_v <- get_sentences(the_idiot)
+idiot_sentiment <- get_sentiment(idiot_v, method='bing')
+simple_plot(idiot_sentiment)
+
+path_to_a_text_file <- system.file("extdata", "portrait.txt",package = "syuzhet")
+joyces_portrait <- get_text_as_string(path_to_a_text_file)
+poa_v <- get_sentences(joyces_portrait)
+poa_sentiment <- get_sentiment(poa_v, method='bing')
+simple_plot(poa_sentiment)
+
+
+#############
+
+# CREATE FUNC TO DETECT MATCH FOR EACH STR
+any_match <- function(str) {
+  any(sapply('chapter', function(x){stringr::str_detect(str, x)}))
+}
+
+# SAPPLY EACH ELEMENT IN STRING LIST TO any_match FUNC
+View(sapply(tolower(cap_V), any_match))
+
+View(tolower(cap_V)[sapply(tolower(cap_V), any_match)])
+
+View(get_nrc_sentiment(dostoevsky_M$text))
+
+View(data.frame(text=books$moby_dick, sentiment=get_sentiment(books$moby_dick)))
+
+dct_val_moby <- get_dct_transform(
+  get_sentiment(books$moby_dick),
+  low_pass_size = 2,
+  x_reverse_len = 100,
+  scale_vals = F,
+  scale_range = F
+)
+
+ggplot(data.frame(dct_val_moby, n=seq(1:length(dct_val_moby)))) +
+  aes(x=n, y=dct_val_moby) +
+  geom_line()
+
+
+#################
+
+prince_annotated <- read.csv("prince_data_annotated.csv")
+head(prince_annotated)

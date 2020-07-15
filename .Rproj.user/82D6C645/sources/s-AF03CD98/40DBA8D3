@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594263862737.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1990525420",
+    "id" : "40DBA8D3",
+    "lastKnownWriteTime" : 1594318106,
+    "last_content_update" : 1594318106162,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/lda_tutorial.R",
+    "project_path" : "lda_tutorial.R",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

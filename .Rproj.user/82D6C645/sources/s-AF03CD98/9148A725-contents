@@ -1,0 +1,174 @@
+# View(toString(gutenberg_download(600)$text))
+# View(stringi::stri_split_regex(toString(gutenberg_download(600)$text),", , [A-Z]*., , ")[[1]])
+
+# 8117 The Possessed (The Devils)	
+# 28054 The Brothers Karamazov	
+
+
+# to lower case
+cap_M$text <- stringr::str_to_lower(cap_M$text)
+
+# Basic cleaning
+fix.contractions <- function(doc) {
+  # "won't" is a special case as it does not expand to "wo not"
+  doc <- gsub("won't", "will not", doc)
+  doc <- gsub("can't", "can not", doc)
+  doc <- gsub("n't", " not", doc)
+  doc <- gsub("'ll", " will", doc)
+  doc <- gsub("'re", " are", doc)
+  doc <- gsub("'ve", " have", doc)
+  doc <- gsub("'m", " am", doc)
+  doc <- gsub("'d", " would", doc)
+  # 's could be 'is' or could be possessive: it has no expansion
+  doc <- gsub("'s", "", doc)
+  return(doc)
+}
+# fix (expand) contractions
+cap_M$text <- sapply(cap_M$text, fix.contractions)
+
+# function to remove special characters
+removeSpecialChars <- function(x) gsub("[^a-zA-Z0-9 ]", " ", x)
+# remove special characters
+cap_M$text <- sapply(cap_M$text, removeSpecialChars)
+
+# remove stopwords
+cap_M$text <- tm::removeWords(
+  x = cap_M$text, 
+  words = tm::stopwords(kind='SMART')
+)
+cap_M$text <- tm::removeWords(
+  x = cap_M$text,
+  words = tm::stopwords(kind = "english")
+)
+cap_M$text <- tm::removeWords(
+  x = cap_M$text,
+  words = qdapDictionaries::Top200Words
+)
+
+# remove redundant, unnecessary white space
+cap_M$text <- trimws(stringr::str_replace_all(
+  string = cap_M$text,
+  pattern = "\\s+",
+  replacement = " "
+))
+
+
+
+# the_idiot <- toString(dostoevsky[dostoevsky$title=='the idiot','text'])
+the_idiot <- toString(paste(dostoevsky[dostoevsky$title=='the idiot','text'], collapse = " "))
+idiot_v <- get_sentences(the_idiot)
+idiot_sentiment <- get_sentiment(idiot_v, method='bing')
+simple_plot(idiot_sentiment)
+
+
+# loop over all novels
+# loop over chapters
+# get sentences per chapter
+# attach to other information
+dostoevsky_M <- data.frame()
+for (title in unique(dostoevsky$title)){
+  for (chapter in dostoevsky[dostoevsky$title==title,'chapter']){
+    text = dostoevsky[dostoevsky$title==title & dostoevsky$chapter==chapter,'text']
+    year = dostoevsky[dostoevsky$title==title & dostoevsky$chapter==chapter,'year']
+    dostoevsky_M <- rbind(dostoevsky_M, data.frame(text=get_sentences(text), chapter, title, year))
+  }
+}
+
+text = dostoevsky[dostoevsky$title==title & dostoevsky$chapter==chapter,'text']
+year = dostoevsky[dostoevsky$title==title & dostoevsky$chapter==chapter,'year']
+View(data.frame(text=get_sentences(text), chapter, title, year))
+
+
+###########################
+
+dct_values <- get_dct_transform(
+  dostoevsky_M$sentiment, 
+  low_pass_size = 7, 
+  x_reverse_len = 1,
+  scale_vals = F,
+  scale_range = F
+)
+plot(
+  dct_values, 
+  type ="l", 
+  main ="Joyce's Portrait using Transformed Values", 
+  xlab = "Narrative Time", 
+  ylab = "Emotional Valence", 
+  col = "red"
+)
+
+ggplot(dostoevsky_M) +
+  aes(x=)
+
+dostoevsky_DCT <- data.frame()
+for (title in unique(dostoevsky_M$title)){
+  df_2 <- data.frame()
+  for (chapter in unique(dostoevsky_M[dostoevsky_M$title==title,'chapter'])){
+    year = dostoevsky_M[dostoevsky_M$title==title & dostoevsky_M$chapter==chapter,'year']
+    sentiment = dostoevsky_M[dostoevsky_M$title==title & dostoevsky_M$chapter==chapter,'sentiment']
+    dct_values <- get_dct_transform(
+      sentiment,
+      low_pass_size = 7,
+      x_reverse_len = 100,
+      scale_vals = F,
+      scale_range = F
+    )
+    df_1 <- data.frame(dct_values, chapter=rep(chapter,length(dct_values)), title=rep(title,length(dct_values)), year=rep(unique(year),length(dct_values)))
+    df_2 <- rbind(df_2, df_1)
+  }
+  df_2$n <- seq(1:nrow(df_2))
+  dostoevsky_DCT <- rbind(dostoevsky_DCT, df_2)
+}
+seq <- seq(1, nrow(dostoevsky_DCT[dostoevsky_DCT$title=='crime and punishment',]), by=100)
+# dostoevsky_DCT[dostoevsky_DCT$title=='crime and punishment',]$chapter[seq]
+
+ggplot(dostoevsky_DCT[dostoevsky_DCT$title=='crime and punishment',]) +
+  aes(x=n, y=dct_values) +
+  geom_line() +
+  geom_vline(xintercept = seq)
+
+ggplot(dostoevsky_DCTPart[dostoevsky_DCTPart$title=='Crime and Punishment' & dostoevsky_DCTPart$part==1,]) +
+  aes(x=n, y=dct_part) +
+  geom_line()
+
+ggplot(dostoevsky_M[dostoevsky_M$title=='Crime and Punishment' & dostoevsky_M$part==1,]) +
+  aes(x=n, y=sentiment) + 
+  geom_line()
+
+seq <- seq(1, nrow(dostoevsky_DCTPart[dostoevsky_DCTPart$title=='Crime and Punishment',]), by=100)
+ggplot(dostoevsky_DCTPart[dostoevsky_DCTPart$title=='Crime and Punishment',]) +
+  aes(x=n, y=dct_part) +
+  geom_line() +
+  geom_vline(xintercept = seq) ########################## dct plot of the whole novel
+
+data.frame(dct_values, 
+           chapter=rep(chapter,length(dct_values)), 
+           title=rep(title,length(dct_values)), 
+           year=rep(year,length(dct_values)))
+
+dct_values <- get_dct_transform(
+  get_sentiment(dostoevsky_M[dostoevsky_M$title=='crime and punishment','text'],lexicon = "nrc"), #syuzhet, bing, afinn, nrc
+  low_pass_size = 7,
+  x_reverse_len = 100,
+  scale_vals = F,
+  scale_range = T
+)
+
+ggplot(data.frame(dct_values)) +
+  aes(x=seq(1:100), y=dct_values) +
+  geom_line()
+
+ggplot(dostoevsky_M[dostoevsky_M$title=='crime and punishment',]) +
+  aes(x=n, y=sentiment) +
+  geom_line()
+
+colnames(dostoevsky_DCT) <- c('dct_values', 'chapter', 'title', 'year')
+# dct_values, 
+
+group <- c(1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9)
+date <- c(as.Date('2012-07-01'),as.Date('2012-08-01'),as.Date('2012-09-01'),as.Date('2012-10-01'),as.Date('2012-11-01'),as.Date('2012-12-01'),as.Date('2013-01-01'),as.Date('2013-02-01'),as.Date('2013-03-01'),as.Date('2013-04-01'),as.Date('2013-05-01'),as.Date('2013-06-01'),as.Date('2013-07-01'),as.Date('2013-08-01'),as.Date('2013-09-01'),as.Date('2013-10-01'),as.Date('2013-11-01'),as.Date('2013-12-01'))
+relamount <- c(2.3498695,0.6984866,0.9079118,2.8858218,1.2406948,2.3140496,1.5904573,3.2531825,4.2962963,3.3287101,3.7698413,1.4376997,5.0687285,4.4520548,5.5063913,5.5676856,6.2686567,11.0210697)
+average <- c(1.524178,1.524178,1.896867,1.896867,1.777372,1.777372,2.421820,2.421820,3.812503,3.812503,2.603770,2.603770,4.760392,4.760392,5.537038,5.537038,8.644863,8.644863)
+new <- data.frame(group, date, relamount, average)
+seq <- seq(2, nrow(new), by=2)
+new$date[seq]

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594489620444.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BD850F6E",
+    "lastKnownWriteTime" : 1594609819,
+    "last_content_update" : 1594609819915,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/lyrics_analysis.R",
+    "project_path" : "lyrics_analysis.R",
+    "properties" : {
+        "cursorPosition" : "16,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled3"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

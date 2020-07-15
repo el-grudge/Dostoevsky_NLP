@@ -1,0 +1,38 @@
+library(cleanNLP)
+??cnlp_annotate
+??cnlp_get_token
+??cnlp_init_udpipe
+
+# dostoevsky # original text per chapter
+# dostoevsky_M # original text per sentence
+# dostoevsky_Cleaned
+# dostoevsky_Words
+# dostoevsky_DCT
+# dostoevsky_DCTPart
+
+cnlp_init_udpipe(model_name = "english")
+
+dostoevsky_M[1,]
+
+annotated_sentence <- cnlp_annotate(
+  input=dostoevsky_M[1,],
+  # backented=NULL,
+  verbose=10,
+  text_name="text",
+  doc_name="part"
+  )
+
+pf_annotated <- cnlp_annotate(
+  input=dostoevsky_M[dostoevsky_M$title=='Poor Folk',],
+  # backented=NULL,
+  verbose=10,
+  text_name="text",
+  doc_name="doc_id"
+)
+
+dostoevsky_M$segment <- paste(dostoevsky_M$part,dostoevsky_M$chapter,sep=".")
+dostoevsky_M$doc_id <- seq(1:nrow(dostoevsky_M))
+class(dostoevsky_M$doc_id)
+
+
+

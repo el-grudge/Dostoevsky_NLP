@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594617879546.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2D49E2A3",
+    "lastKnownWriteTime" : 1594763793,
+    "last_content_update" : 1594763793100,
+    "path" : "~/Downloads/syuzhet-vignette.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "34,3",
+        "scrollLine" : "19"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

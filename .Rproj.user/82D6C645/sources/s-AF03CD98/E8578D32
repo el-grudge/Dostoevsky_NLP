@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594562663640.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E8578D32",
+    "lastKnownWriteTime" : 1594595871,
+    "last_content_update" : 1594595871599,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/lyrical_sentiment_analysis.R",
+    "project_path" : "lyrical_sentiment_analysis.R",
+    "properties" : {
+        "cursorPosition" : "4,7",
+        "scrollLine" : "0",
+        "tempName" : "Untitled3"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

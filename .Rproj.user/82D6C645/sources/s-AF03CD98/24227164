@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594756576200.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "24227164",
+    "lastKnownWriteTime" : 1594757021,
+    "last_content_update" : 1594782529473,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/topic_analysis.R",
+    "project_path" : "topic_analysis.R",
+    "properties" : {
+        "cursorPosition" : "11,40",
+        "scrollLine" : "0",
+        "tempName" : "Untitled4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

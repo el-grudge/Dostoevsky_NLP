@@ -1,0 +1,12 @@
+"0","bovary_nrc_par <- get_sentiment(bovary_v, method='nrc', cl=cl)
+"
+"2","Warning in for (i in seq_len(n)) { :"
+"2","
+ "
+"2"," closing unused connection 4 (<-localhost:11269)
+"
+"2","Warning in for (i in seq_len(n)) { :"
+"2","
+ "
+"2"," closing unused connection 3 (<-localhost:11269)
+"

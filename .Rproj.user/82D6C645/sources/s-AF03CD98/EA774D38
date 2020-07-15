@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594705099377.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EA774D38",
+    "lastKnownWriteTime" : 1594706386,
+    "last_content_update" : 1594706386480,
+    "path" : "~/R/Projects/STA6704_DATA_MINING_II/NLP_FINAL_PROJECT/Exploring_Syuzhet_RPUBS.R",
+    "project_path" : "Exploring_Syuzhet_RPUBS.R",
+    "properties" : {
+        "cursorPosition" : "80,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
